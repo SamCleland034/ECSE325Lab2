@@ -10,7 +10,9 @@ import java.util.regex.Pattern;
 public class Calc {
 
 	public static void main(String[] args) throws IOException {
-		calcMAC();
+		BinaryConvertor bc= new BinaryConvertor();
+		bc.convert();
+		
 		BufferedReader reader = new BufferedReader(new FileReader("src/lab2-x.txt"));
 		BufferedReader reader2 = new BufferedReader(new FileReader("src/lab2-y.txt"));
 		while (!reader.ready())
@@ -49,7 +51,7 @@ public class Calc {
 			Double fweight = (double) 0;
 			int j = 0;
 			String curr = data.get(i).toString();
-			////System.out.println("Number is: " + curr);
+			//////System.out.println("Number is: " + curr);
 			while (curr.charAt(j) != '.') {
 				j++;
 			}
@@ -57,11 +59,11 @@ public class Calc {
 				fweight = (double) (curr.length() - j - 1);
 			else
 				fweight = (double) (curr.length() - j - 1);
-			////System.out.println("Fraction is : " + fweight);
+			//////System.out.println("Fraction is : " + fweight);
 			boolean isPositive = data.get(i) > 0;
 			int weight = (int) Math.round(Math.abs(data.get(i)) * Math.pow(2, fweight));
 			String value = Integer.toBinaryString(weight);
-			////System.out.println("Value is: " + value);
+			//////System.out.println("Value is: " + value);
 			StringBuilder vb = new StringBuilder();
 			vb.append('0');
 			vb.append(value);
@@ -88,7 +90,13 @@ public class Calc {
 				}
 
 			}
-			int diff = (int)(twosComp.length() -  fweight);
+			while(vb.length()<10) {
+				if(isPositive)
+					vb.insert(0, '0');
+				else
+					vb.insert(0, '1');
+			}
+			/*int diff = (int)(twosComp.length() -  fweight);
 			if (diff >= 0)
 				vb.insert(diff, '.');
 			else {
@@ -107,7 +115,7 @@ public class Calc {
 				else
 					vb.insert(0, '1');
 
-			}
+			}*/
 			bstrings.add(vb.toString());
 			vb.delete(0, vb.length());
 
@@ -118,7 +126,7 @@ public class Calc {
 			Double fweight = (double) 0;
 			int j = 0;
 			String curr = data2.get(i).toString();
-			////System.out.println("Number is: " + curr);
+			//////System.out.println("Number is: " + curr);
 			while (curr.charAt(j) != '.') {
 				j++;
 			}
@@ -126,11 +134,11 @@ public class Calc {
 				fweight = (double) (curr.length() - j - 1);
 			else
 				fweight = (double) (curr.length() - j - 1);
-			////System.out.println("Fraction is : " + fweight);
+			//////System.out.println("Fraction is : " + fweight);
 			boolean isPositive = data2.get(i) > 0;
 			int weight = (int) Math.round(Math.abs(data2.get(i)) * Math.pow(2, fweight));
 			String value = Integer.toBinaryString(weight);
-			////System.out.println("Value is: " + value);
+			//////System.out.println("Value is: " + value);
 			StringBuilder vb = new StringBuilder();
 			vb.append('0');
 			vb.append(value);
@@ -157,7 +165,13 @@ public class Calc {
 				}
 
 			}
-			int diff = (int)(twosComp.length() -  fweight);
+			while(vb.length()<10) {
+				if(isPositive)
+					vb.insert(0, '0');
+				else
+					vb.insert(0, '1');
+			}
+			/*int diff = (int)(twosComp.length() -  fweight);
 			if (diff >= 0)
 				vb.insert(diff, '.');
 			else {
@@ -176,7 +190,7 @@ public class Calc {
 				else
 					vb.insert(0, '1');
 
-			}
+			}*/
 			bstrings2.add(vb.toString());
 			vb.delete(0, vb.length());
 
@@ -186,45 +200,45 @@ public class Calc {
 		StringBuilder outputText= new StringBuilder();
 		for (i = 0; i < bstrings.size(); i++) {
 			outputText.append(bstrings.remove(0));
-			outputText.append(' ');
+			outputText.append(System.lineSeparator());
 		}
 		int maxW=0;
 		int curr;
-		for(i=0;i<bstrings.size();i++) {
+		/*for(i=0;i<bstrings.size();i++) {
 			curr= bstrings.get(i).length();
 			if(curr>maxW) maxW = curr;
-		}
+		}*/
 	//	maxW-=1;
 		int maxF=0;
 		String[] array;
-		for(i=0;i<bstrings.size();i++) {
+	/*	for(i=0;i<bstrings.size();i++) {
 			array=bstrings.get(i).split(Pattern.quote("."));
 			curr=array[1].length();
 			if (curr>maxF) maxF=curr;
-		}
+		}*/
 		StringBuilder outputText2= new StringBuilder();
 		for (i = 0; i < bstrings2.size(); i++) {
 			outputText2.append(bstrings2.remove(0));
-			outputText2.append(' ');
+			outputText2.append(System.lineSeparator());
 		}
 		int maxW2=0;
 		int curr2;
-		for(i=0;i<bstrings2.size();i++) {
+		/*for(i=0;i<bstrings2.size();i++) {
 			curr2= bstrings2.get(i).length();
 			if(curr2>maxW2) maxW2 = curr2;
-		}
+		}*/
 		//maxW2-=1;
 		int maxF2=0;
 		String[] array2;
-		for(i=0;i<bstrings2.size();i++) {
+	/*	for(i=0;i<bstrings2.size();i++) {
 			array2=bstrings2.get(i).split(Pattern.quote("."));
 			curr2=array2[1].length();
 			if (curr2>maxF2) maxF2=curr2;
-		}
-		outputText.append(" Max W is: " +maxW + "\n");
-		outputText.append("\n Max F is: " + maxF + "\n");
-		outputText2.append("\n Max W is: " +maxW2 + "\n");
-		outputText2.append("\n Max F is: " + maxF2 + "\n");
+		}*/
+		//outputText.append(" Max W is: " +maxW + "\n");
+	//	outputText.append("\n Max F is: " + maxF + "\n");
+	//	outputText2.append("\n Max W is: " +maxW2 + "\n");
+	//	outputText2.append("\n Max F is: " + maxF2 + "\n");
 		File lab2output = new File("src", "lab2-x-fixed-point.txt");
 		BufferedWriter bw = new BufferedWriter(new FileWriter(lab2output));
 		bw.write(outputText.toString());
@@ -280,7 +294,7 @@ public class Calc {
 		String curr = mac.toString();
 		Double fweight = (double) 0;
 		int j = 0;
-		////System.out.println("Number is: " + curr);
+		//////System.out.println("Number is: " + curr);
 		while (curr.charAt(j) != '.') {
 			j++;
 		}
@@ -288,11 +302,11 @@ public class Calc {
 			fweight = (double) (curr.length() - j - 1);
 		else
 			fweight = (double) (curr.length() - j - 1);
-		////System.out.println("Fraction is : " + fweight);
+		//////System.out.println("Fraction is : " + fweight);
 		boolean isPositive = mac > 0;
 		int weight = (int) Math.round(Math.abs(mac) * Math.pow(2, fweight));
 		String value = Integer.toBinaryString(weight);
-		////System.out.println("Value is: " + value);
+		//////System.out.println("Value is: " + value);
 		StringBuilder vb = new StringBuilder();
 		vb.append('0');
 		vb.append(value);
@@ -341,10 +355,10 @@ public class Calc {
 		}
 		bstrings2.add(vb.toString());
 		//vb.delete(0, vb.length());
-		System.out.println("Value is: " + vb.toString());
-		System.out.println("Weight is: " + vb.length());
+		//System.out.println("Value is: " + vb.toString());
+		//System.out.println("Weight is: " + vb.length());
 		diff= vb.length()-diff;
-		System.out.println("Fraction is: " +diff );
+		//System.out.println("Fraction is: " +diff );
 		return;
 		
 	}
